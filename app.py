@@ -26,7 +26,6 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 toolbar = DebugToolbarExtension(app)
 
-connect_db(app)
 # Check if the database needs to be initialized
 engine = sa.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 inspector = sa.inspect(engine)
@@ -38,6 +37,7 @@ if not inspector.has_table("users"):
 else:
     app.logger.info('Database already contains the users table.')
 
+connect_db(app)
 
 ##############################################################################
 # User signup/login/logout
