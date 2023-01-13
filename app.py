@@ -18,8 +18,9 @@ app = Flask(__name__)
 
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
-link = os.getenv('DATABASE_URL')
-app.config['SQLALCHEMY_DATABASE_URI'] = link.replace("postgres://", "postgresql://")
+link = os.getenv('DATABASE_URL','fail')
+print (link)
+app.config['SQLALCHEMY_DATABASE_URI'] = link.replace
 # os.environ['DATABASE_URL'].replace("postgres://", "postgresql://")
 # app.config['SQLALCHEMY_DATABASE_URI'] = (
 #     os.environ['DATABASE_URL'].replace("postgres://", "postgresql://"))
