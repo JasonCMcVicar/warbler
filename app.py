@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-import sqlalchemy as sa
 
 from flask import Flask, render_template, request, flash, redirect, session, g
 from flask_debugtoolbar import DebugToolbarExtension
@@ -18,17 +17,15 @@ app = Flask(__name__)
 
 # Get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
-link = os.getenv('DATABASE_URL','fail')
-print (link)
-app.config['SQLALCHEMY_DATABASE_URI'] = link.replace
-# os.environ['DATABASE_URL'].replace("postgres://", "postgresql://")
-# app.config['SQLALCHEMY_DATABASE_URI'] = (
-#     os.environ['DATABASE_URL'].replace("postgres://", "postgresql://"))
+# link = os.getenv('DATABASE_URL','fail')
+# print (link)
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    os.environ['postgresql:///warbler'].replace("postgres://", "postgresql://"))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 # app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+# app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 toolbar = DebugToolbarExtension(app)
 
 connect_db(app)
