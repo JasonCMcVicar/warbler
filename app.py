@@ -25,20 +25,20 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = False
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-# app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+# app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 toolbar = DebugToolbarExtension(app)
 
-# Check if the database needs to be initialized
-engine = sa.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
-inspector = sa.inspect(engine)
-if not inspector.has_table("users"):
-    with app.app_context():
-        db.drop_all()
-        db.create_all()
-        app.logger.info('Initialized the database!')
-else:
-    app.logger.info('Database already contains the users table.')
+# # Check if the database needs to be initialized
+# engine = sa.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+# inspector = sa.inspect(engine)
+# if not inspector.has_table("users"):
+#     with app.app_context():
+#         db.drop_all()
+#         db.create_all()
+#         app.logger.info('Initialized the database!')
+# else:
+#     app.logger.info('Database already contains the users table.')
 
 connect_db(app)
 
