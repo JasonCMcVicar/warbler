@@ -6,7 +6,7 @@ from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 
 bcrypt = Bcrypt()
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 
 DEFAULT_IMAGE_URL = "/static/images/default-pic.png"
 DEFAULT_HEADER_IMAGE_URL = "/static/images/warbler-hero.jpg"
