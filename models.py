@@ -33,7 +33,7 @@ class Follows(db.Model):
 class User(db.Model):
     """User in the system."""
 
-    __tablename__ = 'users'
+    __tablename__ = 'uzers'
 
     id = db.Column(
         db.Integer,
